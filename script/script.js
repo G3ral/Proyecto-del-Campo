@@ -331,13 +331,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formLogin) {
     formLogin.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      // 1. FORZAR LIMPIEZA DE CUALQUIER DATO VIEJO ANTES DE ENTRAR
+      localStorage.clear();
+
       const defaultAvatar =
         "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200";
       const roleSelected = state.currentLoginRole;
 
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("isNewUser", "false");
-      localStorage.setItem("isDemoUser", "true");// sirve para mantener el dashboard del agricultor con datos de ejemplo y redirigirlo a la página de perfil según el rol seleccionado se agrega el valor de isDemoUser a true para que el dashboard del agricultor se mantenga con datos de ejemplo y se muestre con información de prueba se agrego el 11-10-2026 
+      localStorage.setItem("isDemoUser", "true"); // sirve para mantener el dashboard del agricultor con datos de ejemplo y redirigirlo a la página de perfil según el rol seleccionado se agrega el valor de isDemoUser a true para que el dashboard del agricultor se mantenga con datos de ejemplo y se muestre con información de prueba se agrego el 11-10-2026
       localStorage.setItem("userName", "Stephanie Valladares");
       localStorage.setItem("userAvatar", defaultAvatar);
       localStorage.setItem("userRole", roleSelected);
@@ -356,6 +360,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formRegister) {
     formRegister.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      // 1. FORZAR LIMPIEZA DE CUALQUIER DATO VIEJO ANTES DE ENTRAR
+      localStorage.clear();
+
       const inputName = document.getElementById("register-name");
       const userName =
         inputName && inputName.value.trim()
@@ -365,11 +373,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200";
       const roleSelected = state.currentRegisterRole;
 
-      localStorage.setItem("isAuthenticated", "true");// sirve para mantener la sesión activa
-      localStorage.setItem("userName", userName);// sirve para mantener el nombre del usuario
-      localStorage.setItem("userAvatar", defaultAvatar);// sirve para mantener el avatar del usuario
-      localStorage.setItem("userRole", roleSelected);// sirve para mantener el rol del usuario y redirigirlo a la página correspondiente
-      localStorage.setItem("isNewUser", "true");// sirve para mostrar el mensaje de bienvenida al usuario y redirigirlo a la página de perfil
+      localStorage.setItem("isAuthenticated", "true"); // sirve para mantener la sesión activa
+      localStorage.setItem("userName", userName); // sirve para mantener el nombre del usuario
+      localStorage.setItem("userAvatar", defaultAvatar); // sirve para mantener el avatar del usuario
+      localStorage.setItem("userRole", roleSelected); // sirve para mantener el rol del usuario y redirigirlo a la página correspondiente
+      localStorage.setItem("isNewUser", "true"); // sirve para mostrar el mensaje de bienvenida al usuario y redirigirlo a la página de perfil
       localStorage.setItem("isDemoUser", "false"); // sirve para limpiar el dashboard del agricultor y mostrarlo vacío y redirigirlo a la página de perfil según el rol seleccionado se agrega el valor de isDemoUser a false para que el dashboard del agricultor se limpie y se muestre vacío se agrego el 11-10-2026
 
       closeAuthModal();

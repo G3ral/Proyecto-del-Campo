@@ -335,7 +335,7 @@ button {
 .hero-subtext {
   font-size: 0.875rem;
   color: var(--color-brand-button);
-  font-weight: 600;
+  font-weight: 600; 
   margin-top: 0.5rem;
 }
 
