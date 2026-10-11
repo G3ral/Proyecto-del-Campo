@@ -166,7 +166,6 @@ button {
 /* ==========================================================================
    3. ESTILOS LANDING PAGE (index.html)
    ========================================================================== */
-/* Header Principal Landing */
 .site-header {
   background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
@@ -317,25 +316,10 @@ button {
   background-color: var(--color-brand-button-hover);
 }
 
-/* .btn-cta-secondary {
-  padding: 0.875rem 1.75rem;
-  background-color: transparent;
-  color: var(--color-brand-button);
-  border: 2px solid var(--color-brand-button);
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.btn-cta-secondary:hover {
-  background-color: rgba(59, 91, 40, 0.08);
-} */
-
 .hero-subtext {
   font-size: 0.875rem;
   color: var(--color-brand-button);
-  font-weight: 600; 
+  font-weight: 600;
   margin-top: 0.5rem;
 }
 
@@ -429,8 +413,6 @@ button {
 /* Banner Apoyo */
 .support-banner {
   position: relative;
-  /* max-width: 1280px; */
-  /* margin: 3rem auto; */
   overflow: hidden;
   padding: 4rem 2rem;
   text-align: center;
@@ -882,28 +864,19 @@ button {
   object-fit: cover;
 }
 
+/* Grilla del Mercado */
 .products-section .products-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1.25rem;
 }
 
-
-
-
-
-/* ==========================================================================
-   INVENTARIO CON SCROLL INTERNO INDEPENDIENTE
-   ========================================================================== */
-
-/* 1. Delimitar la altura de la cuadrícula de productos y habilitar el scroll */
 .products-grid {
-  max-height: 400px;          /* Altura máxima visible antes de activar scroll */
-  overflow-y: auto;           /* Muestra la barra de scroll vertical solo si es necesario */
-  padding-right: 0.5rem;      /* Margen interno derecho para despejar la barra de scroll */
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
-/* 2. Estilizar la barra de scroll interna para un acabado limpio y moderno */
 .products-grid::-webkit-scrollbar {
   width: 6px;
 }
@@ -921,9 +894,6 @@ button {
 .products-grid::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
-
-
-
 
 @media (min-width: 480px) {
   .products-section .products-grid {
@@ -1091,69 +1061,43 @@ button {
 }
 
 /* ==========================================================================
-   5. ESTILOS EXCLUSIVOS DASHBOARD (perfilUsuario.html)
+   5. ESTILOS EXCLUSIVOS DASHBOARD (perfilUsuario.html) - MOBILE FIRST
    ========================================================================== */
 body.dashboard-body {
-  height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana del navegador */
-  margin: 0;
-  overflow: hidden; /* Oculta barras de scroll globales */
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
-}
-
-@media (min-width: 768px) {
-  body.dashboard-body {
-    flex-direction: row;
-  }
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 260px;               /* Ajusta al ancho que tenga tu sidebar */
-  height: 100vh;              /* Ocupa el 100% del alto de la ventana del navegador */
+  margin: 0;
+  background-color: var(--color-bg-main);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  z-index: 100;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Barra Lateral en Móviles (Header Superior Fluido) */
+.sidebar {
+  width: 100%;
   background-color: var(--color-bg-sidebar);
-  border-right: 1px solid var(--color-border);
-  flex-shrink: 0; /* Evita que el sidebar se reduzca en pantallas pequeñas */
-}
-/* Compensación del contenedor principal para que no quede tapado por el sidebar */
-.main-content {
-  margin-left: 260px;         /* Debe ser igual o ligeramente mayor al ancho del sidebar */
-}
-
-
-
-
-
-@media (min-width: 768px) {
-  .sidebar {
-    width: 260px;
-    min-height: 100vh;
-  }
+  border-bottom: 1px solid var(--color-border);
+  z-index: 40;
 }
 
 .sidebar-top {
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 .brand-logo-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
-  padding-bottom: 1.25rem;
-  margin-bottom: 1rem;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
   border-bottom: 1px solid var(--color-border-light);
 }
 
 .brand-logo-container .brand-logo {
-  max-width: 130px;
+  max-width: 110px;
   height: auto;
   object-fit: contain;
 }
@@ -1162,24 +1106,32 @@ body.dashboard-body {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-brand-primary);
-  text-align: center;
 }
 
+/* Menú de navegación en móviles: Desplazable horizontalmente */
 .sidebar-nav {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 0.875rem;
-  padding: 0.65rem 1rem;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
   border-radius: var(--radius-sm);
   color: var(--color-text-dark);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
+  white-space: nowrap;
   transition: background-color var(--transition-fast);
 }
 
@@ -1198,50 +1150,13 @@ body.dashboard-body {
 }
 
 .sidebar-bottom {
-  padding: 1.25rem;
-  border-top: 1px solid var(--color-border-light);
+  display: none; /* Se oculta en móvil para liberar pantalla útil */
 }
 
-.help-card {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: #edf4e8;
-  padding: 0.875rem;
-  border-radius: var(--radius-md);
-  border: 1px solid #d2e0cb;
-  transition: transform var(--transition-fast);
-}
-
-.help-card:hover {
-  transform: translateY(-2px);
-}
-
-.help-icon-wrapper {
-  width: 38px;
-  height: 38px;
-  background-color: var(--color-brand-primary);
-  color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  flex-shrink: 0;
-}
-
-.help-title {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--color-brand-dark);
-}
-
-.help-subtitle {
-  font-size: 0.75rem;
-  color: var(--color-brand-primary);
-}
-
+/* Contenido Principal en Móviles */
 .main-content {
+  width: 100%;
+  margin-left: 0;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -1249,14 +1164,13 @@ body.dashboard-body {
 }
 
 .dashboard-header {
-  padding: 1.25rem 2rem;
+  padding: 1rem 1.25rem;
   background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
 }
 
 .greeting-title {
@@ -1266,32 +1180,40 @@ body.dashboard-body {
 }
 
 .greeting-title h1 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--color-brand-dark);
 }
 
 .greeting-title .emoji {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
 }
 
 .greeting-subtitle {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-text-muted);
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
+}
+
+.dashboard-header .header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .icon-btn {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid #e5e7eb;
   background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: #374151;
   transition: background-color var(--transition-fast);
 }
@@ -1318,78 +1240,29 @@ body.dashboard-body {
   border: 2px solid #ffffff;
 }
 
-.user-profile-menu {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: var(--radius-full);
-  background-color: #ffffff;
-  cursor: pointer;
-}
-
-.profile-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--color-border);
-  flex-shrink: 0;
-}
-
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.profile-name {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.profile-role {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-}
-
-.profile-arrow {
-  font-size: 0.875rem;
-  color: #9ca3af;
-}
-
 .dashboard-container {
-  padding: 2rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  overflow-y: auto;
+  gap: 1.5rem;
 }
 
 .section-title {
   font-size: 1.125rem;
   font-weight: 800;
   color: var(--color-brand-dark);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 550px) {
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .metrics-grid {
-    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1477,13 +1350,7 @@ div[class*="82B24C"] {
 .dashboard-split {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 1100px) {
-  .dashboard-split {
-    grid-template-columns: 2.2fr 1fr;
-  }
+  gap: 1.5rem;
 }
 
 .inventory-section .products-grid {
@@ -1492,7 +1359,7 @@ div[class*="82B24C"] {
   gap: 1.25rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 550px) {
   .inventory-section .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1507,14 +1374,6 @@ div[class*="82B24C"] {
   flex-direction: column;
   justify-content: space-between;
   box-shadow: var(--shadow-sm);
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.inventory-section .product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
 }
 
 .product-card-top {
@@ -1596,7 +1455,6 @@ div[class*="82B24C"] {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  transition: all var(--transition-fast);
 }
 
 .edit-btn {
@@ -1605,19 +1463,10 @@ div[class*="82B24C"] {
   color: #374151;
 }
 
-.edit-btn:hover {
-  background-color: #f3f4f6;
-  color: #111827;
-}
-
 .cancel-btn {
   background-color: #fef2f2;
   border: 1px solid #fca5a5;
   color: #dc2626;
-}
-
-.cancel-btn:hover {
-  background-color: #fee2e2;
 }
 
 .orders-list {
@@ -1670,23 +1519,146 @@ div[class*="82B24C"] {
 }
 
 /* ==========================================================================
-   MODALES Y FORMULARIOS (Control de Visibilidad Ajustado)
+   6. ADAPTACIÓN ESCRITORIO DEL DASHBOARD (>= 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+  body.dashboard-body {
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--color-border);
+    border-bottom: none;
+  }
+
+  .sidebar-top {
+    padding: 1.25rem;
+  }
+
+  .brand-logo-container {
+    flex-direction: column;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .brand-logo-container .brand-logo {
+    max-width: 130px;
+  }
+
+  .sidebar-nav {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: 0.35rem;
+  }
+
+  .nav-item {
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .sidebar-bottom {
+    display: block;
+    padding: 1.25rem;
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .help-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #edf4e8;
+    padding: 0.875rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #d2e0cb;
+  }
+
+  .help-icon-wrapper {
+    width: 38px;
+    height: 38px;
+    background-color: var(--color-brand-primary);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .help-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+  }
+
+  .help-subtitle {
+    font-size: 0.75rem;
+    color: var(--color-brand-primary);
+  }
+
+  .main-content {
+    margin-left: 260px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .dashboard-header {
+    padding: 1.25rem 2rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dashboard-header .header-actions {
+    justify-content: flex-end;
+  }
+
+  .dashboard-container {
+    padding: 2rem;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .dashboard-split {
+    grid-template-columns: 2.2fr 1fr;
+  }
+}
+
+/* ==========================================================================
+   7. MODALES Y FORMULARIOS (ESTILOS CONSOLIDADOS)
    ========================================================================== */
 .modal-overlay {
-  display: flex; /* Utiliza flexbox para centrar el contenido del modal */
-  position: fixed; /* Fija la superposición en toda la pantalla */
-  inset: 0;/* Equivalente a top: 0; right: 0; bottom: 0; left: 0; */
-  z-index: 100; /* Asegura que la superposición esté por encima de otros elementos */
-  align-items: center; /* Centra verticalmente el contenido del modal */
-  justify-content: center; /* Centra horizontalmente el contenido del modal */
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px); /* Aplica un desenfoque al fondo detrás del modal */
-  padding: 1rem; /* Añade un poco de espacio alrededor del modal */
-  opacity: 0; /* Inicialmente invisible */
-  visibility: hidden; /* Inicialmente no visible */
-  pointer-events: none; /* Evita la interacción cuando está oculto */
-  
-  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.05s ease,
+  visibility 0.1s ease;
 }
 
 .modal-overlay.active {
@@ -1695,18 +1667,12 @@ div[class*="82B24C"] {
   pointer-events: auto;
 }
 
-.modal-overlay.hidden {
-  opacity: 0;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
 .modal-card {
   position: relative;
   background-color: #ffffff;
   border-radius: var(--radius-lg);
   padding: 2rem 1.75rem 1.75rem;
-  max-width: 500px;
+  max-width: 540px;
   width: 100%;
   box-shadow: var(--shadow-lg);
   max-height: 90vh;
@@ -1716,61 +1682,59 @@ div[class*="82B24C"] {
   gap: 1.25rem;
 }
 
-/* Botón cerrar modal */
+.modal-close-btn,
 .btn-close-modal {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 32px;
-  height: 32px;
+  top: 1.25rem;
+  right: 1.25rem;
+  background-color: #f1f5f9;
+  border: none;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: #f3f4f6;
-  color: #6b7280;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
-  border: none;
+  font-size: 1.25rem;
+  color: #64748b;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   z-index: 10;
 }
 
+.modal-close-btn:hover,
 .btn-close-modal:hover {
-  background-color: #e5e7eb;
-  color: #111827;
+  background-color: #e2e8f0;
+  color: #0f172a;
 }
 
-/* Header Modal Autenticación */
 .modal-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 1.25rem;
+  padding-bottom: 1rem;
 }
 
-.modal-header img {
-  max-width: 90px;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 0.75rem;
-  border-radius: var(--radius-sm);
+.modal-logo {
+  height: 52px;
+  width: auto;
+  margin: 0 auto 0.75rem auto;
+  display: block;
 }
 
 .modal-title {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1.35rem;
+  font-weight: 700;
   color: var(--color-brand-dark);
+  margin-bottom: 0.35rem;
 }
 
 .modal-subtitle {
-  font-size: 0.8125rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
-  margin-top: 0.25rem;
 }
 
-/* Pestañas Login / Registro */
 .modal-tabs {
   display: flex;
   border-bottom: 2px solid var(--color-border);
@@ -1795,7 +1759,6 @@ div[class*="82B24C"] {
   font-weight: 700;
 }
 
-/* Selector de Rol */
 .role-selector {
   display: flex;
   gap: 0.5rem;
@@ -1822,7 +1785,36 @@ div[class*="82B24C"] {
   font-weight: 700;
 }
 
-/* Inputs y Formularios Generales Modal */
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-brand-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  margin-top: 0.5rem;
+  transition: background-color var(--transition-fast);
+}
+.btn-submit:hover {
+  background-color: var(--color-brand-dark);
+  color: #ffffff;
+}
+
+.modal-footer-text {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+}
+.link-action {
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .modal-form,
 form {
   display: flex;
@@ -1849,6 +1841,10 @@ form {
   flex-direction: column;
   gap: 0.35rem;
 }
+.phone-group {
+    display: flex;
+    align-items: center;
+}
 
 .form-label {
   font-size: 0.75rem;
@@ -1871,6 +1867,17 @@ form {
   color: var(--color-text-dark);
   transition: border-color var(--transition-fast);
 }
+.phone-prefix {
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    padding: 0.65rem 0.625rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
 
 .form-control:focus,
 .form-input:focus,
@@ -1878,65 +1885,6 @@ form {
   outline: none;
   border-color: var(--color-brand-primary);
   box-shadow: 0 0 0 3px rgba(85, 139, 47, 0.15);
-}
-
-.phone-group {
-  display: flex;
-  align-items: center;
-}
-
-.phone-prefix {
-  background-color: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-right: none;
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  padding: 0.65rem 0.625rem;
-  font-size: 0.875rem;
-  color: #6b7280;
-  font-weight: 600;
-}
-
-.phone-group .form-input {
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: var(--color-brand-primary);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.9375rem;
-  border-radius: var(--radius-sm);
-  border: none;
-  margin-top: 0.5rem;
-  transition: background-color var(--transition-fast);
-}
-
-.btn-submit:hover {
-  background-color: var(--color-brand-hover);
-}
-
-.btn-submit-dark {
-  background-color: var(--color-brand-button);
-}
-
-.btn-submit-dark:hover {
-  background-color: var(--color-brand-button-hover);
-}
-
-.modal-footer-text {
-  text-align: center;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  margin-top: 0.75rem;
-}
-
-.link-action {
-  color: var(--color-brand-primary);
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 .textarea {
@@ -1988,100 +1936,14 @@ form {
   margin-top: 0.5rem;
 }
 
-
-
-
-
-
-
-
-
 /* ==========================================================================
-   ESTILOS DE CABECERA Y BOTÓN DE CIERRE EN MODALES
+   8. DROPDOWN DE MI CUENTA Y SELECCIÓN DE UBICACIÓN
    ========================================================================== */
-
-/* 1. Tarjeta modal con posición relativa como contenedor de referencia */
-.modal-card {
-  position: relative; /* Indispensable para posicionar la 'X' de forma absoluta */
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 580px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* 2. Botón 'X' anclado fija a la esquina superior derecha */
-.modal-close-btn {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  background-color: #f1f5f9;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: #64748b;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  z-index: 10;
-}
-
-.modal-close-btn:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
-}
-
-/* 3. Cabecera centrada */
-.modal-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-/* 4. Logo dentro del Modal */
-.modal-logo {
-  height: 52px;
-  width: auto;
-  margin: 0 auto 0.75rem auto;
-  display: block;
-}
-
-.modal-title {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #1e3a29;
-  margin: 0 0 0.35rem 0;
-}
-
-.modal-subtitle {
-  font-size: 0.9rem;
-  color: #64748b;
-  margin: 0;
-}
-
-
-
-
-
-/* ==========================================================================
-   DROPDOWN DE MI CUENTA Y PERFIL
-   ========================================================================== */
-
-/* Contenedor relativo */
 .user-dropdown-container {
   position: relative;
   display: inline-block;
 }
 
-/* Botón principal de usuario */
 .user-menu-btn {
   display: flex;
   align-items: center;
@@ -2098,7 +1960,6 @@ form {
   background-color: #f1f5f9;
 }
 
-/* Avatar del usuario */
 .user-avatar-img {
   width: 38px;
   height: 38px;
@@ -2119,7 +1980,6 @@ form {
   transition: transform 0.2s ease;
 }
 
-/* Menú flotante (Oculto por defecto) */
 .user-dropdown-menu {
   display: none;
   position: absolute;
@@ -2129,7 +1989,9 @@ form {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   padding: 0.75rem;
   z-index: 1000;
 }
@@ -2138,7 +2000,6 @@ form {
   display: block;
 }
 
-/* Encabezado dentro del desplegable */
 .dropdown-header {
   padding: 0.25rem 0.5rem;
 }
@@ -2163,7 +2024,6 @@ form {
   margin: 0.5rem 0;
 }
 
-/* Opciones del menú */
 .dropdown-links {
   list-style: none;
   padding: 0;
@@ -2184,7 +2044,9 @@ form {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .dropdown-links a:hover {
@@ -2201,15 +2063,6 @@ form {
   background-color: #fef2f2;
   color: #991b1b;
 }
-
-
-
-
-
-
-/* ==========================================================================
-   MODAL DE SELECCIÓN DE DEPARTAMENTOS / UBICACIÓN
-   ========================================================================== */
 
 .modal-location-card {
   max-width: 620px;
@@ -2256,19 +2109,4 @@ form {
 
 .dept-btn.active i {
   color: #ffffff;
-}
-
-/* Estado Vacío cuando no hay cosechas en un departamento */
-.no-products-msg {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 3rem 1rem;
-  color: #64748b;
-}
-
-.no-products-msg i {
-  font-size: 3rem;
-  color: #cbd5e1;
-  margin-bottom: 0.75rem;
-  display: block;
 }
