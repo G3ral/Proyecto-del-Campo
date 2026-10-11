@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("isNewUser", "false");
-      localStorage.setItem("isDemoUser", "true");// sirve para mantener el dashboard del agricultor con datos de ejemplo y redirigirlo a la página de perfil según el rol seleccionado se agrega el valor de isDemoUser a true para que el dashboard del agricultor se mantenga con datos de ejemplo y se muestre con información de prueba se agrego el 11-10-2026
+      localStorage.setItem("isDemoUser", "true");// sirve para mantener el dashboard del agricultor con datos de ejemplo y redirigirlo a la página de perfil según el rol seleccionado se agrega el valor de isDemoUser a true para que el dashboard del agricultor se mantenga con datos de ejemplo y se muestre con información de prueba se agrego el 11-10-2026 
       localStorage.setItem("userName", "Stephanie Valladares");
       localStorage.setItem("userAvatar", defaultAvatar);
       localStorage.setItem("userRole", roleSelected);
