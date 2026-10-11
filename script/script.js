@@ -487,7 +487,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const storedName = localStorage.getItem("userName");
   const storedAvatar = localStorage.getItem("userAvatar");
   const isDemoUser = localStorage.getItem("isDemoUser");
-  const isProfilePage = window.location.pathname.includes("perfilUsuario");
+  
+  // ✅ SOLUCIÓN AQUÍ: Convertimos la URL a minúsculas (toLowerCase) para que siempre coincida 
+  // sin importar si Netlify cambia las mayúsculas o quita el .html
+  const isProfilePage = window.location.pathname.toLowerCase().includes("perfilusuario");
 
   if (isProfilePage) {
     const isAuth = localStorage.getItem("isAuthenticated");
@@ -499,8 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileNameElement = document.querySelector(".profile-name");
 
     if (storedName) {
-      if (greetingElement)
-        greetingElement.textContent = `¡Hola, ${storedName}!`;
+      if (greetingElement) greetingElement.textContent = `¡Hola, ${storedName}!`;
       if (profileNameElement) profileNameElement.textContent = storedName;
     }
 
@@ -513,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isNewUser === "true") {
       setTimeout(() => {
         alert(
-          `¡Bienvenido a Del Campo, ${storedName || ""}! Tu cuenta fue creada exitosamente.`,
+          `¡Bienvenido a Del Campo, ${storedName || ""}! Tu cuenta fue creada exitosamente.`
         );
         localStorage.setItem("isNewUser", "false");
       }, 300);
