@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Del Campo Guatemala - Marketplace</title>
+
+  <!-- Favicon para la pestaña del navegador -->
+  <link rel="icon" href="./assets/LogoDelCampo.png" type="image/png">
+
+  <!-- Phosphor Icons para coherencia global -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Estilos Globales y Propios del Proyecto -->
+  <link rel="stylesheet" href="./style/style.css" />
+</head>
+
+<body class="bg-light">
+
+  <!-- ==================== HEADER PRINCIPAL ==================== -->
+  <header class="main-header" data-purpose="main-header">
+    <div class="header-container">
+
+      <!-- Logo Del Campo -->
+      <a href="index.html" class="logo-link" data-purpose="site-logo">
+        <img src="./assets/LogoDelCampo.png" alt="Del Campo Guatemala Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-title">DEL CAMPO</span>
+          <span class="logo-subtitle">Conexión que da valor</span>
+        </div>
+      </a>
+
+      <!-- Barra de Búsqueda -->
+      <div class="search-container" data-purpose="search-container">
+        <form action="#" method="GET" class="search-form">
+          <input type="text" class="search-input" placeholder="¿Qué estás buscando hoy?" data-purpose="search-input" />
+          <button type="submit" class="search-btn" aria-label="Buscar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Acciones de Usuario (Ubicación, Perfil Desplegable, Carrito) -->
+      <div class="header-actions" data-purpose="header-user-actions">
+
+        <!-- Selector de Ubicación -->
+        <div class="location-picker" data-purpose="location-picker">
+          <button id="location-btn" type="button" class="location-btn">
+            <i class="fa-solid fa-location-dot location-icon"></i>
+            <span>Mostrar cosechas de: <strong id="selected-location-text">Todos los departamentos</strong></span>
+            <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+          </button>
+        </div>
+
+        <!-- DROPDOWN DINÁMICO DE USUARIO (Mi Cuenta) -->
+        <div class="user-dropdown-container">
+          <button type="button" id="user-menu-btn" class="user-menu-btn" aria-haspopup="true" aria-expanded="false">
+            <img id="user-avatar"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
+              alt="Foto de perfil de usuario" class="user-avatar-img" />
+            <span id="user-display-name" class="user-display-name">Mi cuenta</span>
+            <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+          </button>
+
+          <!-- Menú Flotante Desplegable -->
+          <div id="user-dropdown-menu" class="user-dropdown-menu">
+            <div class="dropdown-header">
+              <p id="dropdown-user-name" class="dropdown-user-name">Usuario</p>
+              <span id="dropdown-user-role" class="dropdown-user-role">Comprador / Agricultor</span>
+            </div>
+            <hr class="dropdown-divider">
+            <ul class="dropdown-links">
+              <li>
+                <a href="perfilUsuario.html"><i class="fa-solid fa-user"></i> Mi Perfil</a>
+              </li>
+              <li>
+                <button type="button" id="btn-logout" class="dropdown-logout-btn">
+                  <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Botón del Carrito con Contador Dinámico -->
+        <button type="button" class="cart-icon-btn" id="cart-btn" aria-label="Ver carrito de compras"
+          data-purpose="cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+  <main class="main-layout" data-purpose="marketplace-body">
+
+    <!-- Sección de Categorías Circulares -->
+    <section class="categories-section" aria-label="Categorías de productos" data-purpose="categories-bar">
+      <div class="categories-grid">
+
+        <a href="#" class="category-item active" data-category="todas">
+          <div class="category-avatar"
+            style="display: flex; align-items: center; justify-content: center; background-color: #e8f5e9;">
+            <i class="fa-solid fa-border-all" style="font-size: 1.5rem; color: #2e7d32;"></i>
+          </div>
+          <span class="category-label">Todas</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="vegetales">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuANd4xAjsYyocPzGgswk-zpkweXgN7Ten9BrTWw0B-WLVcrE6gfWPuWzGVRX5sJIM8WI1I0nH6_tEHFJtWQaFMP2iwr_LU5k1gL5C0JkGtglT9mF4Qgqe-aVivjONMJh2Cp1shcLjvfNTcM1iSDcB88JYohs_YMhrLRyg45qvLhBwHM70AyGcjzYQTYvMCbb_dl3kOltONiwJjpMTTW22WC7LhVnaNPBemKXvRJrhY2beKaA569MUAY"
+              alt="Vegetales frescos" />
+          </div>
+          <span class="category-label">Vegetales</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="frutas">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHWpVw_PdgF3FMCxAYVeiKow79BE3uSafKs0FotbkxfASk6usfayn7SddXcyn9tHrjQ2HaioVPjFNqepqau0iF7FVIbS-sWkG5rXpMuPmjf1H5KSXcuATtd0hEm-kWi_34HKOoszUpWtg4VZ54_tZEZ9wZ3QnTDhtE22S4djl4JBykXu2J5tD8bmrv-hUCmyLvM2_-y6mQLocmL7fCrrKg4EMxpgzbEyqcdGLN6uBlfUV1at1y0W8J"
+              alt="Frutas frescas" />
+          </div>
+          <span class="category-label">Frutas</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="legumbres">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZTsHzzS28IP_lUSKBMvWbieB_KpHfV71LzroBxE_LNXy61xGOXyU99g1MWzhXOfsz2omOsl4RLEmzzQUtaZBY_918FdQIm4_61__kFp0iAhtS4zwQ4te7BYpghTCBiiy2IETUTn0Ft0mY5YaXIhjBWLFCl63anj3SDnMrw_Pp8x0f-dkcQfZpAg_N8OGdwkHpiCymRVhD36gbW2dAwRe5mJxK9CWGRqDx_L7Do34CK1RJNv1RqDdB"
+              alt="Legumbres frescas" />
+          </div>
+          <span class="category-label">Legumbres</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="granos">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyG2O0B6N43t-wxxOlUlMGFSKXtmt0bOYt5cBvaWAcx9f04bz_h0X4fjg3aNIyE8hHcpDhiQTWrMDDc3lI6gaEFgH-8mq-8eLKEoMR0K68tlpCsHFfF_abbCIKlK_1L9foqkxl8yqNpe8NP8NdpPqlexJnGIohaeJyZt3LTt7nDidTdB6mutyB5x54XTXJh3QCFQ33VmF96gZ1xdke-_q8COKYbZqiIRKXgsr6N6DOtz5nKJ9q9AB_"
+              alt="Granos y cereales" />
+          </div>
+          <span class="category-label">Granos</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="locales">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUClII3_u5CG2rJlqq8P1wCCgk-29fFzLNOGBgwqSnqI-aai2mLv8DcI2h608u0NGNOPKBtxSCQTc3SmkIvlnxKukRtlFu9dn57CMt2ttt0xrA4fQCcM_cRHrC2HJ4ag2iFliuYj-TgyZd-N5ZFNr7Qqpv3vRXYzfWlpB9WPE9z60wekHDeuinLaeLjBFXZiYam9TkKngFqxHGC8_6XEAxkwOoTppe9i0E_6WptJsY26OBg0bN1hd9"
+              alt="Productos locales" />
+          </div>
+          <span class="category-label">Locales</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="carnes">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhIuSSbVKYu8FS77BXJmQzVkNKAhHVkid8tT0q-dly3Q1Aza4YD1lvSw95I29KG3s4dDslwk3iANwerbzTWsW7L7668Vj8zTIPZo-ZyqwGOEm6rqDqgR2aU14Ah5Xau48JHK8hIXL0AJgJjjnwPNpUV0ogAGA7V2149_EP7uM5-_Scu7d300teSrm3rIEOdmjYOEjS7-vnZ3SycgM5cpxJeiPojdcc7n0t0HO_A8wnikH2tMFdVy3i"
+              alt="Carnes del campo" />
+          </div>
+          <span class="category-label">Carnes</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="lacteos">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr9It4DUChf2pXlz2qQsvKL2yjmrBVSDv5ZngaZ9pt896ksM9r0dCxqQ1mkYB-Uw1fUvfz3jWt9MQhjzABhAb40M0LMV_1GSqWsTjGzdXuzCPmyy4Ds-yUwcUIBMXwSoSmiYEYtpEBi_LsC8MgrFWzsuqlzP783fn-hqTYlnf9eTqwrQLaT37rttYP_AbzoDm6xNTsar4labPH_1oHbBlyOJpzG5xDPo9Vf4Hs4FVAp4QTJzt9fZL7"
+              alt="Lácteos y quesos artesanales" />
+          </div>
+          <span class="category-label">Lácteos</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="hogar">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBqFJ-tPv_6BF0xnP9oqgucRQd8vW-m6aMlxRcLzZeK-syQVXaWZ5cnKd8xerCT6GWyp6_1M0rmEagJR16Xc1REuLxXheJjLg4BnHICwgn228dioQ80JIIadrMKvgxClvTGZZ2g__23un9NLxmw_zlF5DW9m9fKWURPHbLcBiMpd5TcP-Z1JRBTjs4rEBs-ChgKVaqb9i-N4G2XAX7IyYsGVjPhuWcf1l5T-xIchdtDFSL1GZbBvQj"
+              alt="Productos para el hogar" />
+          </div>
+          <span class="category-label">Hogar</span>
+        </a>
+
+        <a href="#" class="category-item" data-category="jardin">
+          <div class="category-avatar">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIzKzIjLa1pWxFeZkzBRp31GiiE38aPIit_-ZYORQTGHO6UjIF7fTt9yLSbf0LoQUoV_MqEXzZt3dtIqJ8ifE91Y8YKeVacyKDourgJRqwi4-P_300S-aFXOCagYARUumtuD6DBYsAPUGJIRSL1IWcpIE6069PjYn3_Ep7Wifxymbp7BdVLkeODg3tjqiR5t0igcc61Use0xoZiWULOJL3WAWzYsns40xAkvZnS872mupKi3FAccd"
+              alt="Jardinería y viveros" />
+          </div>
+          <span class="category-label">Jardín</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Sección de Banners Promocionales -->
+    <section class="promo-banners-grid" aria-label="Banners promocionales" data-purpose="promo-banners">
+
+      <!-- Banner 1: Caja Sorpresa -->
+      <article class="promo-card promo-box" data-purpose="promo-card-seasonal-box">
+        <div class="promo-content">
+          <span class="promo-tag tag-green">OFERTA ESPECIAL</span>
+          <h2 class="promo-title">Caja Sorpresa de Temporada</h2>
+          <p class="promo-subtitle">¡Frescura directa a tu mesa!</p>
+          <a href="#" class="btn btn-primary-dark">Ver Cajas</a>
+        </div>
+        <div class="promo-img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdloFQc-ZfKvsV_rUfitfwG0JeIwkKM317CwMcvfD7RHOWk2Btmj7lSGsohXZKTVcJ8nJBewVx0gBLyWnX2LmoCb4QE9T4F_ZkVFvNLYmtW3Dflz0zcvxBbhJ8mE3PaFK84Z8Jo4xOmZqyPxnKfkWCHERaQE5AQ7nvCHozwl6-YaCOmi-lkMHcSuUaQxW8dur3KoN2NvHHAUKR0U6xTiMwmXh4Iy_5OKVEF4AiZGt4HkXl597NwXH"
+            alt="Caja con verduras surtidas frescas" />
+        </div>
+      </article>
+
+      <!-- Banner 2: Pedidos al Por Mayor -->
+      <article class="promo-card promo-wholesale" data-purpose="promo-card-wholesale">
+        <div class="promo-content">
+          <span class="promo-tag tag-orange">PARA COMEDORES</span>
+          <h2 class="promo-title">Pedidos al Por Mayor</h2>
+          <p class="promo-subtitle">con Precios de Productor</p>
+          <a href="#" class="btn btn-outline-dark">Solicitar Cotización</a>
+        </div>
+        <div class="promo-img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEht5UzfQBPRu8oiOf92JVnbxrsVENAZvq4wynmS9TAhX9AlYNjQtk7K3ADx7mOqw7iwk4bY4Kft9IUEgphZ0PTTU_CPHYy_dXClHbeSQXjGX8oFqW3O0M8hDTdeewCTMaDxVBGhxCAtGqas3cd7_9p4m9nj8rJGMEug0ut8wDsfsDB-F8sIXAVOBu_b8qcT-PDjcUsom0X0-dMOTEhPRRq6NBF4zY1FaFxkrD7USy2mT5jW6npPml"
+            alt="Tomates frescos en racimo" />
+        </div>
+      </article>
+
+      <!-- Banner 3: Oferta de Brócoli -->
+      <article class="promo-card promo-broccoli" data-purpose="promo-card-broccoli">
+        <div class="promo-content">
+          <span class="promo-tag tag-light-green">OFERTA DEL DÍA EN TU ZONA</span>
+          <h2 class="promo-title text-white">Brócoli Más Fresco,</h2>
+          <p class="promo-subtitle text-white-90">Más Cerca</p>
+          <a href="#" class="btn btn-light">Ver Brócoli</a>
+        </div>
+        <div class="promo-img-wrapper">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9O884rVX2UmyjmiYIUyBFp2ty1-GL2ljRxBxN8t-taMiUMxvN_rrYnX3f30cWNSE-Q7AUM6Z68KkjSauvR-LaHxyww7DC_Xq4tFf2ZPqr4oKpzGL79X-V_Ve2DU9GBahMfItXhiiUlC2H5kJua1UjA8ISbvfHta_hJF3dYM_RFrLGDzYQo0QncPs98fwwPgbE5fOKUYNZAzSHybczfFyV-vruigkd5bOixyrSAxHwSd5yhb8yGap2"
+            alt="Brócoli verde fresco" />
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Grill de Productos -->
+    <section class="products-section" aria-label="Productos disponibles" data-purpose="products-grid">
+      <div class="products-grid">
+
+        <!-- Producto 1: Guatemala -->
+        <article class="product-card" data-location="guatemala" data-category="vegetales" data-purpose="product-card">
+          <div class="product-img-wrapper">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPn_iM6v461_kMxiUe5Uos3LDsHv6-R1W210nHqYgcOgenLzV-pHGNcxX8PC08JYTpJdul_ePcvu8X1EWFABSJ1FEBthVkFz6xpX33VFhjks-eX1UZ0-XsBU2sb2ZzXy-D48mqz9VEQAQqVDBfrP3-tyztHae_2BT854IG_0W1eWqmMoTgcD6E5s-_xTx7x5uP4egQ-He6ZMHrtFwCxLQvDu-vdIaTtzrcMVj-JHPGG094K6f6nZIo"
+              alt="Zanahoria Segunda fresca" />
+          </div>
+          <div class="product-details">
+            <div>
+              <div class="product-distance">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>A 5 km de ti</span>
+              </div>
+              <h3 class="product-title">Zanahoria Segunda</h3>
+              <p class="product-vendor">Finca San José, Guatemala</p>
+            </div>
+            <div class="product-action-block">
+              <div class="product-price-row">
+                <span class="price-current">Q 3.00 <span class="price-unit">/ Lb</span></span>
+                <span class="price-old">Q 6.00</span>
+              </div>
+              <button type="button" class="btn btn-add-cart" onclick="addToCart('Zanahoria Segunda')">
+                <span>Agregar al carrito</span>
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 2: Chimaltenango -->
+        <article class="product-card" data-location="chimaltenango" data-category="vegetales"
+          data-purpose="product-card">
+          <div class="product-img-wrapper">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7HpKj7lhinBrVSru5FyePun7JSRyYI1tIoeZJW4ffQ3bYSd8BJ2qyGiQdyl7xwRPM-dfBZZ2VC7o0EWCkoNtF_qEdzQws-r5Q9Rg0GgfuIeUf1i9skbpzxWBYGKgKh2EqCwu8PkPdDZ3KkayCcMQD6YBza6H6VKzkXV2ipmkI8RcUUCEDnJVmZoGwxJszDarwUmS2HYp0516ONCTKpDrOSBqHbFcW4-pvvoL5auhX2WTeSU7N4pzP"
+              alt="Tomates de Segunda frescos" />
+          </div>
+          <div class="product-details">
+            <div>
+              <div class="product-distance">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>A 10 km de ti</span>
+              </div>
+              <h3 class="product-title">Tomates de Segunda</h3>
+              <p class="product-vendor">Familia Pérez, Chimaltenango</p>
+            </div>
+            <div class="product-action-block">
+              <div class="product-price-row">
+                <span class="price-current">Q 2.00 <span class="price-unit">/ Lb</span></span>
+                <span class="price-old">Q 4.00</span>
+              </div>
+              <button type="button" class="btn btn-add-cart" onclick="addToCart('Tomates de Segunda')">
+                <span>Agregar al carrito</span>
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 3: Chimaltenango -->
+        <article class="product-card" data-location="chimaltenango" data-category="vegetales"
+          data-purpose="product-card">
+          <div class="product-img-wrapper">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgLxvj3hyTrzHA8AHhZ9o7_wtOL10bLdUI61gUJW0Pf2PAf3bE4oUafDyyEeUoBMRejmW1E-vDDf8S8FumUvLUDpul2YSyB5pG-XckuttBNwjeGfAOn8jnv-f3gaYaFvAOrcR_PdjY_tLnufW_3hS7Vb5rydwejFd34-5b5G9JG_SaSv79Jx50mQw8yr0SunBl9zO2OPFWFs8OSXsg0hWxLsc4Fk8jVM4Zvv4Nd5yHRBK7FACgNZQK"
+              alt="Brócoli de Segunda fresco" />
+          </div>
+          <div class="product-details">
+            <div>
+              <div class="product-distance">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>A 10 km de ti</span>
+              </div>
+              <h3 class="product-title">Brócoli de Segunda</h3>
+              <p class="product-vendor">Familia Pérez, Chimaltenango</p>
+            </div>
+            <div class="product-action-block">
+              <div class="product-price-row">
+                <span class="price-current">Q 4.00 <span class="price-unit">/ Lb</span></span>
+                <span class="price-old">Q 6.00</span>
+              </div>
+              <button type="button" class="btn btn-add-cart" onclick="addToCart('Brócoli de Segunda (Lb)')">
+                <span>Agregar al carrito</span>
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 4: Sololá -->
+        <article class="product-card" data-location="solola" data-category="vegetales" data-purpose="product-card">
+          <div class="product-img-wrapper">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFAzaST9MKDcSju6qWy7VwtJ4YiodHnkZQQAmvbZ3vGuqlbSVVqwb7lm8dsN9JEVrhAUWhLKW-IdXW9qr2DHfP9I3ooQ-Uw1iI9rZPMFuqNEnnUHJNt8BwAVQRf5jdjx6MOnFBXT10sV0Zzphs-mFYViFhb50ghntYXXCjyzt7zL6ipwGCExcQRjFFQpU4ISA4huupJWp7MHmu0YHkxMpFd3IzP3It2fCiCvT6QzveOHc8_Xnk1tHP"
+              alt="Brócoli por unidad" />
+          </div>
+          <div class="product-details">
+            <div>
+              <div class="product-distance">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>A 18 km de ti</span>
+              </div>
+              <h3 class="product-title">Brócoli de Segunda</h3>
+              <p class="product-vendor">Cooperativa Atitlán, Sololá</p>
+            </div>
+            <div class="product-action-block">
+              <div class="product-price-row">
+                <span class="price-current">Q 4.00 <span class="price-unit">/ Ud</span></span>
+                <span class="price-old">Q 6.00</span>
+              </div>
+              <button type="button" class="btn btn-add-cart" onclick="addToCart('Brócoli de Segunda (Ud)')">
+                <span>Agregar al carrito</span>
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 5: Sacatepéquez -->
+        <article class="product-card" data-location="sacatepequez" data-category="vegetales"
+          data-purpose="product-card">
+          <div class="product-img-wrapper">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFNTM32kD8tSsMjpCRAiH5SJjqOk5tL00yX-t7xN4sHA5HdfNexlqRl4kMXnCxqNxKhvOZX1M0aElhkdvau6HOS4lR1e_IalWTBwpjbAR45JgaDGQCUsQS4lo_2BAhd-U_Cr9UsEjOvldV3Z3qOBGCo3AJW-Ryh1oZoM1hXzk9etAdgAxJnZ7LJ86BHlEZze8DNZOuCKxnAkR6VM8GKqEzGXyYegb1Q7zgFAixYUkThpJEpyzqWIWn"
+              alt="Lechuga de Segunda" />
+          </div>
+          <div class="product-details">
+            <div>
+              <div class="product-distance">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>A 12 km de ti</span>
+              </div>
+              <h3 class="product-title">Lechuga de Segunda</h3>
+              <p class="product-vendor">Agricultores Antigua, Sacatepéquez</p>
+            </div>
+            <div class="product-action-block">
+              <div class="product-price-row">
+                <span class="price-current">Q 3.00 <span class="price-unit">/ Ud</span></span>
+                <span class="price-old">Q 5.00</span>
+              </div>
+              <button type="button" class="btn btn-add-cart" onclick="addToCart('Lechuga de Segunda')">
+                <span>Agregar al carrito</span>
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div> <!-- Cierre correcto de .products-grid -->
+
+      <!-- MENSAJE CUANDO NINGÚN PRODUCTO COINCIDE -->
+      <div id="no-products-msg" style="display: none; text-align: center; padding: 40px; width: 100%;">
+        <i class="fa-solid fa-seedling" style="font-size: 3rem; color: #a0aec0; margin-bottom: 10px;"></i>
+        <h3 style="color: #4a5568;">No se encontraron productos</h3>
+        <p style="color: #718096;">Intenta cambiando de departamento, categoría o término de búsqueda.</p>
+      </div>
+
+    </section> <!-- Cierre de .products-section -->
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <i class="fa-solid fa-circle-check toast-icon"></i>
+    <span id="toast-message">¡Producto agregado al carrito!</span>
+  </div>
+
+  <!-- Modal: Selección de Departamento / Ubicación -->
+  <div id="location-modal" class="modal-overlay">
+    <div class="modal-card modal-location-card">
+      <button id="btn-close-location-modal" class="modal-close-btn" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-header">
+        <img src="./assets/LogoDelCampo.png" alt="Del Campo Guatemala" class="modal-logo">
+        <h3 class="modal-title">¿Dónde quieres buscar cosechas?</h3>
+        <p class="modal-subtitle">Filtra productos frescos directamente desde los agricultores de tu zona</p>
+      </div>
+
+      <div class="departments-grid">
+        <button type="button" class="dept-btn active" data-dept="todos">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Todos (Guatemala)</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="guatemala">
+          <i class="fa-solid fa-city"></i>
+          <span>Guatemala</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="chimaltenango">
+          <i class="fa-solid fa-seedling"></i>
+          <span>Chimaltenango</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="sacatepequez">
+          <i class="fa-solid fa-landmark"></i>
+          <span>Sacatepéquez</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="quetzaltenango">
+          <i class="fa-solid fa-mountain"></i>
+          <span>Quetzaltenango</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="solola">
+          <i class="fa-solid fa-water"></i>
+          <span>Sololá</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="alta-verapaz">
+          <i class="fa-solid fa-tree"></i>
+          <span>Alta Verapaz</span>
+        </button>
+        <button type="button" class="dept-btn" data-dept="san-marcos">
+          <i class="fa-solid fa-wheat-awn"></i>
+          <span>San Marcos</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Principal -->
+  <script src="./script/script.js"></script>
+</body>
+
+</html>

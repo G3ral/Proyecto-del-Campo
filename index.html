@@ -2,332 +2,271 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEL CAMPO - Conexión que da valor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Del Campo Guatemala - Conexión que da valor</title>
+  
+  <link rel="icon" href="./assets/LogoDelCampo.png" type="image/png">
+  <!-- Favicon para la pestaña del navegador -->
 
-  <!-- Tipografía oficial 'Inter' desde Google Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <!-- Íconos de Google (Material Symbols) - REQUERIDO PARA LOS ÍCONOS DEL MODAL -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-    rel="stylesheet" />
-
-  <!-- Vinculación a nuestro CSS externo -->
-  <link rel="stylesheet" href="./style/style.css" />
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
-
-  <!-- 1. ENCABEZADO / NAVEGACIÓN -->
-  <header class="navbar">
-    <div class="container navbar-container">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 28L32 18L52 28L32 38L12 28Z" fill="#8BC34A" />
-            <path d="M22 18C22 13 28 8 32 8C36 8 42 13 42 18" stroke="#558B2F" stroke-width="3"
-              stroke-linecap="round" />
-            <path d="M27 15C29 11 32 9 32 9" stroke="#FB8C00" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M37 15C35 11 32 9 32 9" stroke="#FB8C00" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M10 28L32 39L54 28V46C54 48 52 50 49 51L32 58L15 51C12 50 10 48 10 46V28Z" fill="#A0522D"
-              fill-opacity="0.85" stroke="#5D2906" stroke-width="2.5" stroke-linejoin="round" />
-            <path d="M32 39V58" stroke="#4A2004" stroke-width="2.5" />
-            <path d="M10 37L32 48L54 37" stroke="#4A2004" stroke-width="2" />
-            <circle cx="28" cy="22" r="4" fill="#FB8C00" />
-            <circle cx="36" cy="23" r="3.5" fill="#E53935" />
-            <circle cx="32" cy="20" r="4" fill="#7CB342" />
-          </svg>
-        </div>
-
-        <div class="brand-text">
+  <!-- NAVEGACIÓN -->
+  <header class="site-header">
+    <div class="header-container">
+      <a class="brand-logo" href="#" title="Del Campo Guatemala">
+        <img src="./assets/LogoDelCampo.png" alt="Del Campo Guatemala Logo">
+        <div class="brand-info">
           <span class="brand-title">DEL CAMPO</span>
-          <span class="brand-subtitle">Conexión que da valor</span>
+          <span class="brand-tagline">Conexión que da valor</span>
         </div>
       </a>
-
-      <!-- IDs sincronizados con script.js -->
-      <nav class="nav-links">
-        <a href="#" id="nav-login-btn" class="link-login">Iniciar sesión</a>
-        <a href="#" id="nav-register-btn" class="btn btn-green-dark">Regístrate</a>
-      </nav>
+      <div class="nav-actions">
+        <button type="button" onclick="openAuthModal('login')" class="btn-login">Iniciar sesión</button>
+        <button type="button" onclick="openAuthModal('register')" class="btn-register">Regístrate</button>
+      </div>
     </div>
   </header>
 
-  <!-- 2. SECCIÓN PRINCIPAL (HERO) -->
-  <section class="hero-section">
-    <div class="hero-bg-glow"></div>
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          Conexión que da valor:<br>
-          Frescura local a precios justos.
-        </h1>
-        <p class="hero-description">
-          Únete a la comunidad que rescata cosechas y apoya al productor guatemalteco.
-        </p>
-        <div class="hero-actions">
-          <button id="buy-btn" class="btn btn-green-dark">Quiero comprar</button>
-          <button id="sell-btn" class="btn btn-white-border">Soy agricultor (vender)</button>
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Conexión que da valor:<br>
+            <span>Frescura local a precios justos.</span>
+          </h1>
+          <p class="hero-description">
+            Únete a Del Campo y descubre una nueva forma de comprar frutos y verduras a mejores precios, conectándote directamente con los agricultores.
+             Con nustra suscripción, accede a oportunidades de ahorro, mientras apoyas el trabajo del campo guatemalteco.
+          </p>
+          <div class="hero-actions">
+            <button type="button" onclick="openAuthModal('register', 'buyer')" class="btn-cta-primary">¡SUSCRÍBETE Y EMPIEZA A AHORRAR!</button>
+            <p class="hero-subtext">Precios accesibles • Compra inteligente • Apoyo al agricultor
+            </p>
+            <!-- <button type="button" onclick="openAuthModal('register', 'farmer')" class="btn-cta-secondary">Soy agricultor
+              (vender)</button> -->
+          </div>
+        </div>
+        <div>
+          <div class="hero-visual-frame">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCruWFp_fkHaZSmGmiEwyK7irab5JybGFhu0D0vx1f4tbHuswSBd4cLCcAvvaAZY5L2_2WAMdte5DZczf3Q8EoUmorBXB5WvrJArQ_W2rLrs0CdWLy3OHc-ATBV4BxcTOhdau9BCI9AiSA4O2vhGDLYsyQ3ydvxs-YMkWFlXBzBqPI8KSgPwASpobyO_SHVNA_W0bWDAPB_TMJfA3kUe5KwpXtXdrEhRHAAsMrh3ZuHToJogF1NSJwXyg"
+              alt="Agricultores guatemaltecos con vegetales frescos del campo">
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="hero-image-container">
+    <!-- CÓMO FUNCIONA -->
+    <section class="how-it-works" id="como-funciona">
+      <div class="section-container">
+        <h2 class="section-title">¿Cómo funciona?</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="step-title">1. Regístrate</h3>
+            <p class="step-desc">Crea tu cuenta como consumidor o negocio.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="step-title">2. Elige tu departamento</h3>
+            <p class="step-desc">Te conectamos <strong>*solo*</strong> con agricultores de tu zona.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon-badge">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3C7.45 17.5 9.17 15 12 15c4.5 0 9-3 9-9 0 0-4-1-8 2zm-6 6c-2.3 0-3.7 1.7-4.5 3.3.6-2.5 2.2-5.1 4.5-6.3v3z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="step-title">3. Apoya y ahorra</h3>
+            <p class="step-desc">Recibe productos frescos, salva cosechas y ahorra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BANNER APOYO -->
+    <section class="support-banner">
+      <div class="banner-bg-overlay">
         <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCruWFp_fkHaZSmGmiEwyK7irab5JybGFhu0D0vx1f4tbHuswSBd4cLCcAvvaAZY5L2_2WAMdte5DZczf3Q8EoUmorBXB5WvrJArQ_W2rLrs0CdWLy3OHc-ATBV4BxcTOhdau9BCI9AiSA4O2vhGDLYsyQ3ydvxs-YMkWFlXBzBqPI8KSgPwASpobyO_SHVNA_W0bWDAPB_TMJfA3kUe5KwpXtXdrEhRHAAsMrh3ZuHToJogF1NSJwXyg"
-          alt="Agricultores guatemaltecos sonrientes con hortalizas frescas" class="hero-img">
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJWFcsvN9G6nfV3KdhwFnjy9SzOWGvvhDLas_X1O6ZeM91MEDbl3bsaAENHtJp6IpY5YF3O1NNGzBp_UBh80X9O7zlcxjqFiMookodBqLx1uhAV1-WMtODnyoIuazppUDnJr44HasNbM-wIuKhyZ12Uf0G76t5M_AANtsHuV2ZtABcUG5gN6e_NdtLg2evt3M11TSlHsLy0Uo8Qe8vywznrmpAZ47hrLmC5450wgdiYkW9xJQGVb_szQ"
+          alt="Textura de campo">
       </div>
-    </div>
-  </section>
-
-  <!-- 3. SECCIÓN: ¿CÓMO FUNCIONA? -->
-  <section class="how-it-works">
-    <div class="container">
-      <h2 class="section-title">¿Cómo funciona?</h2>
-
-      <div class="steps-grid">
-        <!-- Paso 1 -->
-        <article class="step-card">
-          <div class="icon-circle-outer">
-            <div class="icon-circle-inner green-bg">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" />
-              </svg>
-            </div>
-          </div>
-          <h3>1. Regístrate</h3>
-          <p>Crea tu cuenta como consumidor o negocio.</p>
-        </article>
-
-        <!-- Paso 2 -->
-        <article class="step-card">
-          <div class="icon-circle-outer">
-            <div class="icon-circle-inner map-bg">
-              <svg class="map-shape" viewBox="0 0 60 60" fill="none">
-                <path d="M12 25L24 16L38 18L48 28L44 45L34 52L20 48L14 38Z" fill="#7da35d" opacity="0.5" />
-              </svg>
-              <svg class="map-pin" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" />
-              </svg>
-            </div>
-          </div>
-          <h3>2. Elige tu departamento</h3>
-          <p>Te conectamos <strong>*solo*</strong> con agricultores de tu zona.</p>
-        </article>
-
-        <!-- Paso 3 -->
-        <article class="step-card">
-          <div class="icon-circle-outer">
-            <div class="icon-circle-inner transparent-bg">
-              <svg class="leaf-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 006.75 7.5a.75.75 0 000 1.5 6.046 6.046 0 012.385.49A7.502 7.502 0 003 16.5a.75.75 0 001.5 0 6.002 6.002 0 015.659-5.992c.621.905 1.517 1.625 2.56 2.052a.75.75 0 10.562-1.391 6.027 6.027 0 01-2.276-2.023A8.243 8.243 0 0112 6.75a.75.75 0 00.75-.75c0-1.406.398-2.721 1.09-3.844.204-.332.062-.77-.277-.87zM18.75 10.5a.75.75 0 00-.75.75 6.002 6.002 0 01-5.659 5.992c-.621-.905-1.517-1.625-2.56-2.052a.75.75 0 00-.562 1.391 6.027 6.027 0 002.276 2.023 8.243 8.243 0 00-.895 2.396.75.75 0 00.75.75c1.406 0 2.721-.398 3.844-1.09.332-.204.77-.062.87.277a.75.75 0 001.071.136 9.742 9.742 0 003.539-6.177A7.547 7.547 0 0021.75 16.5a.75.75 0 000-1.5 6.046 6.046 0 01-2.385-.49 7.502 7.502 0 00-6.115-4.01z" />
-              </svg>
-            </div>
-          </div>
-          <h3>3. Apoya y ahorra</h3>
-          <p>Recibe productos frescos, salva cosechas y ahorra.</p>
-        </article>
+      <div class="banner-content">
+        <h2 class="banner-title">Apoyemos juntos al campo guatemalteco</h2>
+        <p class="banner-subtitle">Menos desperdicio, más oportunidades.</p>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- 4. BANNER DE IMPACTO -->
-  <section class="callout-banner">
-    <div class="banner-overlay"></div>
-    <div class="container banner-content">
-      <h2>Apoyemos juntos al campo guatemalteco</h2>
-      <p>Menos desperdicio, más oportunidades.</p>
-    </div>
-  </section>
-
-  <!-- 5. PIE DE PÁGINA (FOOTER) -->
-  <footer class="footer">
-    <div class="container footer-grid">
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-container">
       <div class="footer-brand">
-        <div class="brand-logo">
-          <div class="logo-icon small-icon">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 28L32 18L52 28L32 38L12 28Z" fill="#8BC34A" />
-              <path d="M10 28L32 39L54 28V46C54 48 52 50 49 51L32 58L15 51C12 50 10 48 10 46V28Z" fill="#FFF8E7"
-                fill-opacity="0.9" stroke="#E5E7EB" stroke-width="1.5" />
-              <path d="M32 39V58" stroke="#558B2F" stroke-width="2" />
-              <path d="M10 37L32 48L54 37" stroke="#558B2F" stroke-width="1.5" />
-              <circle cx="28" cy="22" r="3.5" fill="#FB8C00" />
-              <circle cx="36" cy="23" r="3" fill="#E53935" />
-              <circle cx="32" cy="20" r="3.5" fill="#8BC34A" />
-            </svg>
-          </div>
-          <div class="brand-text">
-            <span class="brand-title white-text">DEL CAMPO</span>
-            <span class="brand-subtitle green-text">Conexión que da valor</span>
+        <div class="footer-logo">
+          <img src="./assets/LogoDelCampo.png" alt="Del Campo Logo">
+          <div>
+            <strong style="color:#fff; display:block;">DEL CAMPO</strong>
+            <span style="font-size:0.75rem; color:#6ee7b7;">Conexión que da valor</span>
           </div>
         </div>
-        <p class="footer-about">
+        <p style="font-size:0.875rem; line-height:1.5;">
           Plataforma que conecta agricultores de Guatemala con personas y empresas para vender y comprar productos
           frescos directamente.
         </p>
       </div>
-
       <div class="footer-links">
         <h4>Enlaces</h4>
         <ul>
-          <li><a href="#">Cómo funciona</a></li>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
           <li><a href="#">Para agricultores</a></li>
           <li><a href="#">Para compradores</a></li>
           <li><a href="#">Preguntas frecuentes</a></li>
         </ul>
       </div>
     </div>
-
-    <div class="footer-bottom">
+    <div class="footer-copyright">
       <p>© 2026 Del Campo. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- 6. VENTANA MODAL DE AUTENTICACIÓN (Movido a la raíz antes de cerrar body) -->
-  <div id="auth-modal" class="modal-backdrop hidden">
-    <div class="modal-content">
-
-      <!-- Botón de cerrar (X) -->
-      <button id="close-modal" class="btn-close" aria-label="Cerrar modal">
-        <span class="material-symbols-outlined">close</span>
+  <!-- MODAL DE AUTENTICACIÓN -->
+  <div id="auth-modal" class="modal-overlay" onclick="handleBackdropClick(event)" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button type="button" class="btn-close-modal" onclick="closeAuthModal()" aria-label="Cerrar">
+        <svg style="width:20px; height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
       </button>
 
-      <!-- Encabezado del Modal -->
       <div class="modal-header">
-        <div class="modal-brand">
-          <div class="logo-icon small-icon">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 28L32 18L52 28L32 38L12 28Z" fill="#8BC34A" />
-              <path d="M10 28L32 39L54 28V46C54 48 52 50 49 51L32 58L15 51C12 50 10 48 10 46V28Z" fill="#A0522D"
-                stroke="#5D2906" stroke-width="2.5" />
-              <circle cx="28" cy="22" r="4" fill="#FB8C00" />
-              <circle cx="36" cy="23" r="3.5" fill="#E53935" />
-              <circle cx="32" cy="20" r="4" fill="#7CB342" />
-            </svg>
-          </div>
-          <span class="brand-title">DEL CAMPO</span>
-        </div>
-        <p class="modal-subtitle">Conexión que da valor</p>
-
-        <!-- Pestañas (Tabs) -->
-        <div class="modal-tabs">
-          <button id="tab-login" class="tab-btn active">Iniciar sesión</button>
-          <button id="tab-register" class="tab-btn">Registrarse</button>
-        </div>
+        <img src="./assets/LogoDelCampo.png" alt="Del Campo Guatemala">
+        <h3 id="modal-dynamic-heading" class="modal-title">Bienvenido a Del Campo</h3>
+        <p class="modal-subtitle">Conexión directa con productores locales en Guatemala</p>
       </div>
 
-      <!-- Cuerpo del Modal -->
-      <div class="modal-body">
+      <!-- Control de Pestañas -->
+      <div class="modal-tabs">
+        <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" class="tab-btn active">Iniciar
+          Sesión</button>
+        <button type="button" id="tab-btn-register" onclick="switchAuthTab('register')"
+          class="tab-btn">Registrarse</button>
+      </div>
 
-        <!-- VISTA: INICIAR SESIÓN -->
-        <div id="view-login" class="auth-view">
-
-          <div class="divider"><span>Tus datos</span></div>
-
-          <form id="login-form">
-            <div class="form-group">
-              <label for="login-email">Correo electrónico o teléfono</label>
-              <div class="input-wrapper">
-                <span class="material-symbols-outlined input-icon">mail</span>
-                <input type="text" id="login-email" placeholder="ejemplo@correo.com o 5555-1234" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="label-row">
-                <label for="login-password">Contraseña</label>
-                <a href="#" class="forgot-link">¿Recuperar contraseña?</a>
-              </div>
-              <div class="input-wrapper">
-                <span class="material-symbols-outlined input-icon">lock</span>
-                <input type="password" id="login-password" placeholder="••••••••" required>
-                <button type="button" class="btn-toggle-pass" data-target="login-password">
-                  <span class="material-symbols-outlined">visibility</span>
-                </button>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-green-dark btn-full">
-              <span class="material-symbols-outlined">login</span> Iniciar sesión
-            </button>
-          </form>
-        </div>
-
-        <!-- VISTA: REGISTRO -->
-        <div id="view-register" class="auth-view hidden">
-
-          <!-- Selección de Rol -->
-          <div class="role-selector">
-            <label>¿Cómo deseas unirte?</label>
-            <div class="role-buttons">
-              <button type="button" class="role-btn active-role" data-role="buyer">
-                <span class="material-symbols-outlined">shopping_basket</span> Comprador
-              </button>
-              <button type="button" class="role-btn" data-role="farmer">
-                <span class="material-symbols-outlined">agriculture</span> Agricultor
-              </button>
+      <!-- Formulario Login -->
+      <div id="tab-content-login">
+        <form id="form-login">
+          <div class="form-group">
+            <label class="form-label">Perfil de acceso</label>
+            <div class="role-selector">
+              <button type="button" id="login-role-buyer" onclick="selectLoginRole('buyer')" class="role-btn active">🛒
+                Soy Comprador</button>
+              <button type="button" id="login-role-farmer" onclick="selectLoginRole('farmer')" class="role-btn">🌱 Soy
+                Agricultor</button>
             </div>
           </div>
+          <div class="form-group">
+            <label class="form-label">Correo electrónico o teléfono</label>
+            <input type="text" required placeholder="ejemplo@correo.com o +502 5555-5555" class="form-input">
+          </div>
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+              <label class="form-label" style="margin:0;">Contraseña</label>
+              <a href="#" class="link-action" style="font-size:0.75rem;">¿Olvidaste tu contraseña?</a>
+            </div>
+            <input type="password" required placeholder="••••••••" class="form-input">
+          </div>
+          <button type="submit" class="btn-submit">Entrar a Del Campo</button>
+        </form>
+        <p class="modal-footer-text">
+          ¿Aún no eres parte de la comunidad?
+          <span onclick="switchAuthTab('register')" class="link-action">Crear una cuenta gratis</span>
+        </p>
+      </div>
 
-          <form id="register-form">
+      <!-- Formulario Registro -->
+      <div id="tab-content-register" class="hidden">
+        <form id="form-register">
+          <div class="form-group">
+            <label class="form-label">Tipo de cuenta</label>
+            <div class="role-selector">
+              <button type="button" id="reg-role-buyer" onclick="selectRegisterRole('buyer')" class="role-btn active">🛒
+                Comprador</button>
+              <button type="button" id="reg-role-farmer" onclick="selectRegisterRole('farmer')" class="role-btn">🌱
+                Agricultor</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nombre completo o comercial</label>
+            <input type="text" id="register-name" required placeholder="ej. Juan Pérez o Restaurante La Cosecha" class="form-input">
+          </div>
+          <div class="form-row-2">
             <div class="form-group">
-              <label for="register-name">Nombre completo</label>
-              <div class="input-wrapper">
-                <span class="material-symbols-outlined input-icon">person</span>
-                <input type="text" id="register-name" placeholder="Ej. Carlos Morales" required>
+              <label class="form-label">Teléfono (WhatsApp)</label>
+              <div class="phone-group">
+                <span class="phone-prefix">+502</span>
+                <input type="tel" required placeholder="5555-1234" class="form-input">
               </div>
             </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="register-phone">Teléfono</label>
-                <div class="input-wrapper">
-                  <span class="material-symbols-outlined input-icon">call</span>
-                  <input type="tel" id="register-phone" placeholder="+502 5555 1234" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="register-dept">Departamento</label>
-                <div class="input-wrapper">
-                  <span class="material-symbols-outlined input-icon">location_on</span>
-                  <select id="register-dept" required>
-                    <option value="guatemala">Guatemala</option>
-                    <option value="sacatepequez">Sacatepéquez</option>
-                    <option value="chimaltenango">Chimaltenango</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="register-password">Contraseña</label>
-              <div class="input-wrapper">
-                <span class="material-symbols-outlined input-icon">lock</span>
-                <input type="password" id="register-password" placeholder="Mínimo 8 caracteres" required>
-                <button type="button" class="btn-toggle-pass" data-target="register-password">
-                  <span class="material-symbols-outlined">visibility</span>
-                </button>
-              </div>
+              <label class="form-label">Departamento</label>
+              <select required class="form-select">
+                <option value="guatemala">Guatemala</option>
+                <option value="chimaltenango">Chimaltenango</option>
+                <option value="sacatepequez">Sacatepéquez</option>
+                <option value="quetzaltenango">Quetzaltenango</option>
+                <option value="solola">Sololá</option>
+                <option value="alta-verapaz">Alta Verapaz</option>
+                <option value="san-marcos">San Marcos</option>
+                <option value="otro">Otro departamento</option>
+              </select>
             </div>
-
-            <button type="submit" class="btn btn-green-dark btn-full mt-3">
-              <span class="material-symbols-outlined">how_to_reg</span> Crear mi cuenta
-            </button>
-          </form>
-        </div>
-
+          </div>
+          <div class="form-group">
+            <label class="form-label">Correo electrónico</label>
+            <input type="email" required placeholder="tu@correo.com" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contraseña</label>
+            <input type="password" required placeholder="Mínimo 8 caracteres" class="form-input">
+          </div>
+          <button type="submit" class="btn-submit btn-submit-dark">Crear Cuenta</button>
+        </form>
+        <p class="modal-footer-text">
+          ¿Ya tienes una cuenta?
+          <span onclick="switchAuthTab('login')" class="link-action">Inicia sesión aquí</span>
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- Carga del JavaScript -->
+  <!-- Scripts -->
   <script src="./script/script.js"></script>
 </body>
 
