@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Del Campo Guatemala - Conexión que da valor</title>
-  
+
   <link rel="icon" href="./assets/LogoDelCampo.png" type="image/png">
   <!-- Favicon para la pestaña del navegador -->
 
@@ -46,13 +46,15 @@
           <h1 class="hero-title">
             Conexión que da valor:<br>
             <span>Frescura local a precios justos.</span>
-          </h1> 
+          </h1>
           <p class="hero-description">
-            Únete a Del Campo y descubre una nueva forma de comprar frutos y verduras a mejores precios, conectándote directamente con los agricultores.
-             Con nustra suscripción, accede a oportunidades de ahorro, mientras apoyas el trabajo del campo guatemalteco.
+            Únete a Del Campo y descubre una nueva forma de comprar frutos y verduras a mejores precios, conectándote
+            directamente con los agricultores.
+            Con nustra suscripción, accede a oportunidades de ahorro, mientras apoyas el trabajo del campo guatemalteco.
           </p>
           <div class="hero-actions">
-            <button type="button" onclick="openAuthModal('register')" class="btn-cta-primary">¡SUSCRÍBETE Y EMPIEZA A AHORRAR!</button>
+            <button type="button" onclick="openAuthModal('register')" class="btn-cta-primary">¡SUSCRÍBETE Y EMPIEZA A
+              AHORRAR!</button>
             <p class="hero-subtext">Precios accesibles • Compra inteligente • Apoyo al agricultor
             </p>
             <!-- <button type="button" onclick="openAuthModal('register', 'farmer')" class="btn-cta-secondary">Soy agricultor
@@ -224,7 +226,8 @@
           </div>
           <div class="form-group">
             <label class="form-label">Nombre completo o comercial</label>
-            <input type="text" id="register-name" required placeholder="ej. Juan Pérez o Restaurante La Cosecha" class="form-input">
+            <input type="text" id="register-name" required placeholder="ej. Juan Pérez o Restaurante La Cosecha"
+              class="form-input">
           </div>
           <div class="form-row-2">
             <div class="form-group">
@@ -256,6 +259,49 @@
             <label class="form-label">Contraseña</label>
             <input type="password" required placeholder="Mínimo 8 caracteres" class="form-input">
           </div>
+
+          <!-- ==================== SECCIÓN DE PAGO Y SUSCRIPCIÓN ==================== -->
+          <div class="payment-section-header"
+            style="margin-top: 15px; padding-top: 12px; border-top: 1px dashed #cbd5e1;">
+            <p class="form-label"
+              style="color: #0f3822; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-credit-card" style="color: #2e6b34; font-size: 1rem;"></i>
+              Datos de Pago para Suscripción
+            </p>
+            <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 10px;">
+              Accede a precios directo del campo y ahorra en cada compra.
+            </p>
+          </div>
+
+          <!-- Nombre en la Tarjeta -->
+          <div class="form-group">
+            <label for="reg-card-name" class="form-label">Nombre en la Tarjeta</label>
+            <input type="text" id="reg-card-name" class="form-input" placeholder="Ej. Juan Pérez" required />
+          </div>
+
+          <!-- Número de Tarjeta con Icono de Candado -->
+          <div class="form-group">
+            <label for="reg-card-number" class="form-label">Número de Tarjeta</label>
+            <div style="position: relative;">
+              <input type="text" id="reg-card-number" class="form-input" placeholder="4000 1234 5678 9010"
+                maxlength="19" required />
+              <i class="fa-solid fa-lock"
+                style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 0.85rem;"></i>
+            </div>
+          </div>
+
+          <!-- Fecha de Expiración y CVV -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-card-exp" class="form-label">Expiración (MM/AA)</label>
+              <input type="text" id="reg-card-exp" class="form-input" placeholder="MM/AA" maxlength="5" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-card-cvv" class="form-label">Código CVV</label>
+              <input type="password" id="reg-card-cvv" class="form-input" placeholder="123" maxlength="3" required />
+            </div>
+          </div>
+
           <button type="submit" class="btn-submit btn-submit-dark">Crear Cuenta</button>
         </form>
         <p class="modal-footer-text">

@@ -361,18 +361,46 @@ document.addEventListener("DOMContentLoaded", () => {
     formRegister.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      // Captura y limpieza de datos de la tarjeta (siempre se recomienda validar y limpiar los datos antes de procesarlos)
+      //se agrego la validación de la tarjeta de crédito/débito para que el usuario no pueda registrarse sin ingresar datos válidos de tarjeta se agrego el 18-10-2026
+      const cardName = document.getElementById("reg-card-name")?.value.trim();
+      const cardNum = document
+        .getElementById("reg-card-number")
+        ?.value.replace(/\s/g, ""); // Remueve espacios
+      const cardExp = document.getElementById("reg-card-exp")?.value.trim();
+      const cardCvv = document.getElementById("reg-card-cvv")?.value.trim();
+
+      // VALIDACIÓN ESTRICTA DE TARJETA DE CRÉDITO / DÉBITO (se puede mejorar con expresiones regulares o librerías de validación de tarjetas)
+      // Se asegura que todos los campos estén completos y tengan la longitud mínima esperada se agrego el 18-10-2026
+      if (
+        !cardName ||
+        !cardNum ||
+        cardNum.length < 16 ||
+        !cardExp ||
+        cardExp.length < 5 ||
+        !cardCvv ||
+        cardCvv.length < 3
+      ) {
+        if (typeof showNotification === "function") {
+          showNotification(
+            "Por favor ingresa datos de tarjeta válidos para la suscripción.",
+          );
+        }
+        alert(
+          "¡Atención! Para completar tu suscripción debes ingresar una tarjeta de crédito o débito válida.",
+        );
+        return; // DETIENE EL PROCESO: No registra ni redirige
+      }
+
       // 1. FORZAR LIMPIEZA DE CUALQUIER DATO VIEJO ANTES DE ENTRAR
       localStorage.clear();
 
       const inputName = document.getElementById("register-name");
-      const userName =
-        inputName && inputName.value.trim()
-          ? inputName.value.trim()
-          : "Nuevo Usuario";
-      const defaultAvatar =
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200";
+      const userName = inputName && inputName.value.trim() ? inputName.value.trim() : "Nuevo Usuario";
+      const defaultAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200";
       const roleSelected = state.currentRegisterRole;
 
+      // Guardar sesión del nuevo usuario 
       localStorage.setItem("isAuthenticated", "true"); // sirve para mantener la sesión activa
       localStorage.setItem("userName", userName); // sirve para mantener el nombre del usuario
       localStorage.setItem("userAvatar", defaultAvatar); // sirve para mantener el avatar del usuario
@@ -382,6 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       closeAuthModal();
 
+      // Redirección según rol
       if (roleSelected === "farmer") {
         window.location.href = "perfilUsuario.html";
       } else {
@@ -487,10 +516,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const storedName = localStorage.getItem("userName");
   const storedAvatar = localStorage.getItem("userAvatar");
   const isDemoUser = localStorage.getItem("isDemoUser");
-  
-  // ✅ SOLUCIÓN AQUÍ: Convertimos la URL a minúsculas (toLowerCase) para que siempre coincida 
+
+  // ✅ SOLUCIÓN AQUÍ: Convertimos la URL a minúsculas (toLowerCase) para que siempre coincida
   // sin importar si Netlify cambia las mayúsculas o quita el .html
-  const isProfilePage = window.location.pathname.toLowerCase().includes("perfilusuario");
+  const isProfilePage = window.location.pathname
+    .toLowerCase()
+    .includes("perfilusuario");
 
   if (isProfilePage) {
     const isAuth = localStorage.getItem("isAuthenticated");
@@ -502,7 +533,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileNameElement = document.querySelector(".profile-name");
 
     if (storedName) {
-      if (greetingElement) greetingElement.textContent = `¡Hola, ${storedName}!`;
+      if (greetingElement)
+        greetingElement.textContent = `¡Hola, ${storedName}!`;
       if (profileNameElement) profileNameElement.textContent = storedName;
     }
 
@@ -515,7 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isNewUser === "true") {
       setTimeout(() => {
         alert(
-          `¡Bienvenido a Del Campo, ${storedName || ""}! Tu cuenta fue creada exitosamente.`
+          `¡Bienvenido a Del Campo, ${storedName || ""}! Tu cuenta fue creada exitosamente.`,
         );
         localStorage.setItem("isNewUser", "false");
       }, 300);
@@ -617,3 +649,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+// --- FORMATEO AUTOMÁTICO EN TIEMPO REAL DE TARJETA DE CRÉDITO --- se agrego el formateo automático de la tarjeta de crédito/débito para que el usuario pueda ingresar los datos de manera más fácil y rápida se agrego el 18-10-2026
+  const regCardNum = document.getElementById("reg-card-number");
+  const regCardExp = document.getElementById("reg-card-exp");
+  const regCardCvv = document.getElementById("reg-card-cvv");
+
+  if (regCardNum) {
+    regCardNum.addEventListener("input", (e) => {
+      let value = e.target.value.replace(/\D/g, "").substring(0, 16);
+      let formatted = value.match(/.{1,4}/g)?.join(" ") || value;
+      e.target.value = formatted;
+    });
+  }
+
+  if (regCardExp) {
+    regCardExp.addEventListener("input", (e) => {
+      let value = e.target.value.replace(/\D/g, "").substring(0, 4);
+      if (value.length >= 2) {
+        value = value.substring(0, 2) + "/" + value.substring(2, 4);
+      }
+      e.target.value = value;
+    });
+  }
+
+  if (regCardCvv) {
+    regCardCvv.addEventListener("input", (e) => {
+      e.target.value = e.target.value.replace(/\D/g, "").substring(0, 4);
+    });
+  }
