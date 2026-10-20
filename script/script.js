@@ -396,11 +396,15 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.clear();
 
       const inputName = document.getElementById("register-name");
-      const userName = inputName && inputName.value.trim() ? inputName.value.trim() : "Nuevo Usuario";
-      const defaultAvatar = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200";
+      const userName =
+        inputName && inputName.value.trim()
+          ? inputName.value.trim()
+          : "Nuevo Usuario";
+      const defaultAvatar =
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200";
       const roleSelected = state.currentRegisterRole;
 
-      // Guardar sesión del nuevo usuario 
+      // Guardar sesión del nuevo usuario
       localStorage.setItem("isAuthenticated", "true"); // sirve para mantener la sesión activa
       localStorage.setItem("userName", userName); // sirve para mantener el nombre del usuario
       localStorage.setItem("userAvatar", defaultAvatar); // sirve para mantener el avatar del usuario
@@ -650,32 +654,100 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // --- FORMATEO AUTOMÁTICO EN TIEMPO REAL DE TARJETA DE CRÉDITO --- se agrego el formateo automático de la tarjeta de crédito/débito para que el usuario pueda ingresar los datos de manera más fácil y rápida se agrego el 18-10-2026
-  const regCardNum = document.getElementById("reg-card-number");
-  const regCardExp = document.getElementById("reg-card-exp");
-  const regCardCvv = document.getElementById("reg-card-cvv");
+const regCardNum = document.getElementById("reg-card-number");
+const regCardExp = document.getElementById("reg-card-exp");
+const regCardCvv = document.getElementById("reg-card-cvv");
 
-  if (regCardNum) {
-    regCardNum.addEventListener("input", (e) => {
-      let value = e.target.value.replace(/\D/g, "").substring(0, 16);
-      let formatted = value.match(/.{1,4}/g)?.join(" ") || value;
-      e.target.value = formatted;
+if (regCardNum) {
+  regCardNum.addEventListener("input", (e) => {
+    let value = e.target.value.replace(/\D/g, "").substring(0, 16);
+    let formatted = value.match(/.{1,4}/g)?.join(" ") || value;
+    e.target.value = formatted;
+  });
+}
+
+if (regCardExp) {
+  regCardExp.addEventListener("input", (e) => {
+    let value = e.target.value.replace(/\D/g, "").substring(0, 4);
+    if (value.length >= 2) {
+      value = value.substring(0, 2) + "/" + value.substring(2, 4);
+    }
+    e.target.value = value;
+  });
+}
+
+if (regCardCvv) {
+  regCardCvv.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/\D/g, "").substring(0, 4);
+  });
+}
+
+
+
+// =========================================================
+// MODAL DE RASTREO (TRACKING DEMO) se ralizo el modal de rastreo para que el agricultor pueda ver el estado del pedido y enviar notificaciones al cliente se agrego el 18-10-2026
+// =========================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const trackingModal = document.getElementById("tracking-modal");
+  const closeTrackingModal = document.getElementById("close-tracking-modal");
+  const trackingOrderTitle = document.getElementById("tracking-order-title");
+
+  if (trackingModal && closeTrackingModal) {
+    // 1. Función para cerrar el modal
+    const closeTracking = () => trackingModal.classList.remove("active");
+
+    closeTrackingModal.addEventListener("click", closeTracking);
+    trackingModal.addEventListener("click", (e) => {
+      if (e.target === trackingModal) closeTracking(); // Cierra si haces clic fuera de la tarjeta blanca
     });
-  }
 
-  if (regCardExp) {
-    regCardExp.addEventListener("input", (e) => {
-      let value = e.target.value.replace(/\D/g, "").substring(0, 4);
-      if (value.length >= 2) {
-        value = value.substring(0, 2) + "/" + value.substring(2, 4);
+    // 2. Atrapar clics en los botones "Procesar Pedido"
+    // Buscamos todos los botones dentro de contenedores de tarjetas.
+    const allButtons = document.querySelectorAll("button");
+
+    allButtons.forEach((btn) => {
+      // Verificamos si el botón dice "Procesar Pedido"
+      if (btn.textContent.trim().includes("Procesar Pedido")) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Magia Educativa: `closest()` busca hacia arriba en el HTML hasta encontrar
+          // el contenedor de la tarjeta entera, para poder extraer de ahí el nombre del cliente.
+          const parentCard =
+            btn.closest(".order-card") || btn.closest("div[style*='border']");
+
+          if (parentCard && trackingOrderTitle) {
+            // Buscamos el elemento que tiene el ID del pedido, asumiendo que es un h3 o negrita
+            const orderIdElement = parentCard.querySelector(
+              "h3, strong, .order-id, .font-bold",
+            );
+            if (orderIdElement) {
+              // Copiamos el texto (Ej. "Pedido #112 - Juan Gomez") al modal
+              trackingOrderTitle.textContent = orderIdElement.textContent;
+            }
+          }
+
+          // Mostramos el modal
+          trackingModal.classList.add("active");
+        });
       }
-      e.target.value = value;
     });
-  }
 
-  if (regCardCvv) {
-    regCardCvv.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/\D/g, "").substring(0, 4);
-    });
+    // 3. Simular el botón de actualizar estado
+    const btnUpdateStatus = document.getElementById("btn-update-status");
+    if (btnUpdateStatus) {
+      btnUpdateStatus.addEventListener("click", () => {
+        // Usa la función de notificaciones si existe, sino usa un alert estándar
+        if (typeof showNotification === "function") {
+          showNotification(
+            "¡Pedido actualizado! Notificación enviada al cliente.",
+          );
+        } else {
+          alert("¡Pedido actualizado a 'En Camino'!");
+        }
+        closeTracking(); // Cerramos el modal tras "actualizar"
+      });
+    }
   }
+});

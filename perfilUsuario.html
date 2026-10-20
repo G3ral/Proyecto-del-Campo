@@ -149,7 +149,8 @@
               </div>
               <div class="metric-data">
                 <span class="metric-label">Ventas del Mes</span>
-                <span id="stat-sales" class="metric-value">Q. 2,150.00</span> <!-- se agrego id stat-sales (11-10-2026) -->
+                <span id="stat-sales" class="metric-value">Q. 2,150.00</span>
+                <!-- se agrego id stat-sales (11-10-2026) -->
               </div>
             </div>
             <div class="metric-footer">
@@ -164,7 +165,8 @@
               </div>
               <div class="metric-data">
                 <span class="metric-label">Pedidos Pendientes</span>
-                <span id="stat-orders" class="metric-value">5 Pedidos</span> <!-- se agrego id stat-orders (11-10-2026) -->
+                <span id="stat-orders" class="metric-value">5 Pedidos</span>
+                <!-- se agrego id stat-orders (11-10-2026) -->
               </div>
             </div>
             <div class="metric-footer">
@@ -179,7 +181,8 @@
               </div>
               <div class="metric-data">
                 <span class="metric-label">Productos Activos</span>
-                <span id="stat-products" class="metric-value">14 Cosechas</span> <!-- se agrego id stat-products (11-10-2026) -->
+                <span id="stat-products" class="metric-value">14 Cosechas</span>
+                <!-- se agrego id stat-products (11-10-2026) -->
               </div>
             </div>
             <div class="metric-footer">
@@ -194,7 +197,8 @@
               </div>
               <div class="metric-data">
                 <span class="metric-label">Ingresos Totales</span>
-                <span id="stat-revenue" class="metric-value">Q. 6,800.00</span> <!-- se agrego id stat-revenue (11-10-2026) -->
+                <span id="stat-revenue" class="metric-value">Q. 6,800.00</span>
+                <!-- se agrego id stat-revenue (11-10-2026) -->
               </div>
             </div>
             <div class="metric-footer">
@@ -434,6 +438,81 @@
       </form>
     </div>
   </div>
+
+
+  <!-- ========================================================= -->
+  <!-- MODAL DE RASTREO DE PEDIDO (TRACKING DEMO)                -->
+  <!-- ========================================================= -->
+  <div id="tracking-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 450px;">
+
+      <!-- Botón de cerrar -->
+      <button id="close-tracking-modal" class="modal-close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Cabecera del Modal -->
+      <div class="modal-header">
+        <h2 class="modal-title" style="font-size: 1.25rem;">Estado del Pedido</h2>
+        <!-- Este texto lo cambiaremos dinámicamente con JavaScript -->
+        <p class="modal-subtitle" id="tracking-order-title">Pedido #112 - Cliente</p>
+      </div>
+
+      <!-- Línea de tiempo (Timeline) -->
+      <div class="tracking-container" style="padding: 1rem 0;">
+        <ul class="tracking-timeline">
+
+          <!-- Paso 1: Completado -->
+          <li class="tracking-step completed">
+            <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+            <div class="step-content">
+              <h4>Pedido Recibido</h4>
+              <p>El cliente ha confirmado la compra.</p>
+              <span class="step-time">Hoy, 08:30 AM</span>
+            </div>
+          </li>
+
+          <!-- Paso 2: Activo (Actual) -->
+          <li class="tracking-step active">
+            <div class="step-icon"><i class="fa-solid fa-box-open"></i></div>
+            <div class="step-content">
+              <h4>En Preparación</h4>
+              <p>Estás empacando los productos frescos.</p>
+              <span class="step-time">En proceso...</span>
+            </div>
+          </li>
+
+          <!-- Paso 3: Pendiente -->
+          <li class="tracking-step">
+            <div class="step-icon"><i class="fa-solid fa-truck"></i></div>
+            <div class="step-content">
+              <h4>En Camino</h4>
+              <p>Listo para ser recogido por logística.</p>
+            </div>
+          </li>
+
+          <!-- Paso 4: Pendiente -->
+          <li class="tracking-step">
+            <div class="step-icon"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="step-content">
+              <h4>Entregado</h4>
+              <p>El cliente recibirá su pedido.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Botón de acción ficticia -->
+      <div class="modal-footer" style="justify-content: center;">
+        <button class="btn btn-primary" id="btn-update-status" style="width: 100%;">
+          Actualizar a "En Camino"
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
 
   <!-- Scripts -->
   <script src="./script/script.js"></script>
